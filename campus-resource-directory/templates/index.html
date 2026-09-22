@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Resource Directory</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f4;
+        color: #222;
+      }
+
+      header {
+        background-color: #1f4e79;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      main {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+      }
+
+      .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Campus Resource Directory</h1>
+      <p>Find helpful services available on campus.</p>
+    </header>
+
+    <main>
+      <div class="resource-grid">{{RESOURCE_CARDS}}</div>
+    </main>
+
+    <footer>
+      <p>Classroom demo: locations and contact details are fictional.</p>
+    </footer>
+  </body>
+</html>

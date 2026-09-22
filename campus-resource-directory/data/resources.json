@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Tebo Library",
+    "location": "502 S Campus Dr, Hays, KS 67601",
+    "description": "Borrow books, use research databases, reserve a study room, and get help finding reliable academic sources.",
+    "category": "Academic Resources",
+    "contact": "library@fhsu.edu"
+  },
+  {
+    "id": 2,
+    "name": "Writing Center",
+    "location": "Rarick Hall 157",
+    "description": "Meet with a writing tutor for help brainstorming, organizing essays, revising drafts, and formatting citations.",
+    "category": "Tutoring",
+    "contact": "writing@fhsu.edu"
+  },
+  {
+    "id": 3,
+    "name": "Career Services",
+    "location": "Center for Student Success 142",
+    "description": "Review your resume, practice interviews, explore internships, and prepare for campus career fairs.",
+    "category": "Career Development",
+    "contact": "careers@fhsu.edu"
+  },
+  {
+    "id": 4,
+    "name": "Health and Wellness Service",
+    "location": "Fischli-Wills Center for Student Success Third Floor, Room 301",
+    "description": "Find information about student health appointments, wellness programs, and available campus health services.",
+    "category": "Health and Wellness",
+    "contact": "healthcenter@fhsu.edu"
+  },
+  {
+    "id": 5,
+    "name": "Technology Help Desk",
+    "location": "Tomanek Hall 127",
+    "description": "Get assistance with campus Wi-Fi, student accounts, software installation, and classroom technology.",
+    "category": "Technology Support",
+    "contact": "785-628-3478"
+  }
+]

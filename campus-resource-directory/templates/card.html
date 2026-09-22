@@ -1,0 +1,35 @@
+<div class="resource-card">
+  <h2>{{NAME}}</h2>
+
+  <p>
+    <strong>Location:</strong>
+    {{LOCATION}}
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    {{CATEGORY}}
+  </p>
+
+  <a href="/resource?id={{ID}}"> View Details </a>
+</div>
+
+<style>
+  .resource-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .resource-card h2 {
+    margin-top: 0;
+  }
+
+  .resource-card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+</style>
