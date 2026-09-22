@@ -103,13 +103,3 @@ These checks passed during development using Node.js 24:
 
 You can repeat the route checks in your browser after starting the server.
 Use the browser's Network tab to inspect response status and Content-Type.
-
-## Starter source
-
-The three HTML templates were downloaded from the instructor's repository:
-https://github.com/ramseyFHSU/INF651_F2026-/tree/main/Assignment%202%20starter%20code%20/templates%20
-
-Their layout and placeholders are retained. The overview footer now labels
-the fictional demo data. Backend files and sample data were added for this project.
-
-The ZIP omits `node_modules`; `npm install` recreates it.
