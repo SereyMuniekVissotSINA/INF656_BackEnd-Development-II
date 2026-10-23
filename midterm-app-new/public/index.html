@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A small Express application with a complete items API.">
+  <title>Midterm App | Items API</title>
+  <link rel="icon" href="/images/items.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Midterm App home"><span class="brand-mark">m.</span> Mine App</a>
+      <span class="header-note">Express.js / Backend essentials</span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="welcome">
+        <div class="hero-copy">
+          <p class="eyebrow">A SMALL APP. THE WHOLE PICTURE.</p>
+          <h1 id="welcome">Welcome to the <span>Mine App</span></h1>
+          <p class="intro">Five everyday items. One simple API. Explore a complete Express application, from the first request to the final response.</p>
+          <a class="button" href="/api/items">Explore the items API <span aria-hidden="true">&rarr;</span></a>
+          <p class="button-note">GET /api/items &middot; JSON response</p>
+        </div>
+        <figure class="illustration">
+          <img src="images/items.svg" width="520" height="420" alt="Illustration of a notebook, water bottle, desk lamp and wireless mouse on a desk">
+          <figcaption>A few essentials. Ready to explore.</figcaption>
+        </figure>
+      </section>
+      <section class="features" aria-label="Application features">
+        <article><span class="feature-number">01 / ORGANIZE</span><h2>A place for everything</h2><p>Controllers, routes and middleware each have a clear role.</p></article>
+        <article><span class="feature-number">02 / INTERACT</span><h2>Make a request</h2><p>Read, create, update and delete items through the API.</p></article>
+        <article><span class="feature-number">03 / OBSERVE</span><h2>Follow the activity</h2><p>Request and error logs record what happens along the way.</p></article>
+      </section>
+    </main>
+    <footer><span>Built with Node.js &amp; Express</span><span>Data lives in memory &middot; resets on restart</span></footer>
+  </div>
+</body>
+</html>
