@@ -23,7 +23,7 @@ async function start(application) {
   };
 }
 
-test('Midterm App HTTP integration tests', async (t) => {
+test('Mine App HTTP integration tests', async (t) => {
   const originalSeed = await fs.readFile(path.join(root, 'data/items.json'), 'utf8');
   const seed = JSON.parse(originalSeed);
   const running = await start(app);
@@ -49,7 +49,7 @@ test('Midterm App HTTP integration tests', async (t) => {
   await t.test('homepage, CSS and image are served from public', async () => {
     const home = await request('/');
     assert.equal(home.status, 200);
-    assert.match(home.text.replace(/<[^>]*>/g, ''), /Welcome to the Midterm App/);
+    assert.match(home.text.replace(/<[^>]*>/g, ''), /Welcome to the Mine App/);
     const css = await request('/style.css');
     assert.equal(css.status, 200);
     assert.match(css.headers.get('content-type'), /text\/css/);

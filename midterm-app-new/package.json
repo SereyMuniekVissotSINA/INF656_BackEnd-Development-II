@@ -1,8 +1,8 @@
 {
-  "name": "midterm-app-new",
+  "name": "mine-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Express midterm application with an in-memory items API and request/error logging.",
+  "description": "Mine App: an Express application with an in-memory items API and request/error logging.",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

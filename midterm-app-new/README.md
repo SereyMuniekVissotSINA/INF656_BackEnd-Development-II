@@ -1,4 +1,4 @@
-# Midterm App
+# Mine App
 
 A complete Express.js application with a static homepage and an in-memory items API.
 Requires Node.js 22 or newer.
@@ -15,7 +15,7 @@ npm start
 On Windows PowerShell, use `npm.cmd install` and `npm.cmd start` if script execution
 policy prevents the `npm.ps1` wrapper from running.
 
-Open **http://localhost:3000**. The homepage displays **Welcome to the Midterm App**,
+Open **http://localhost:3000**. The homepage displays **Welcome to the Mine App**,
 with a CSS stylesheet and a local SVG image.
 
 The server uses `process.env.PORT` when set, otherwise port 3000. For example, in
