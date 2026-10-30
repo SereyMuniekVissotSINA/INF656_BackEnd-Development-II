@@ -25,7 +25,7 @@ use npm install and cp .env.example .env.
 The example selects the local database without a username or password:
 
 ```dotenv
-MONGODB_URI=mongodb://127.0.0.1:27017
+MONGODB_URI=mongodb+srv://<db_user>:<db_password>@midterm.ccs0o8i.mongodb.net/
 MONGODB_DB=mine_app
 PORT=3000
 LOCAL_MONGODB_PORT=27017
@@ -187,23 +187,3 @@ Connect to mongodb://127.0.0.1:27017 and open mine_app > items.
 Run POST, PATCH and DELETE individually in Postman and refresh Compass after each
 request. Compass itself is a separate desktop application; installing dependencies
 does not install it. Do not treat automated driver checks as Compass screenshots.
-
-## Tests and submission
-
-npm test starts a separate real mongod process and disposable test database.
-It never uses, drops or replaces the database named in your .env. Tests verify
-ObjectIds, all CRUD operations, persisted values through direct database queries,
-a separate app process reading saved changes, immutable IDs, invalid/missing IDs,
-validation, logging, error handling, safe failed startup and non-destructive seeds.
-
-The submission ZIP excludes node_modules, .env, local database files, downloaded
-binaries, runtime logs and Git metadata. A recipient installs dependencies, creates
-their own .env, starts MongoDB and runs the seed command. Keep private credentials
-out of any files or screenshots submitted with the assignment.
-
-## References
-
-- [MongoDB Node.js driver: insertion](https://www.mongodb.com/docs/drivers/node/current/crud/insert/)
-- [MongoDB Node.js driver: compound updates](https://www.mongodb.com/docs/drivers/node/current/crud/compound-operations/)
-- [Compass connections](https://www.mongodb.com/docs/compass/connect/)
-- [Postman command-line collection runner](https://learning.postman.com/docs/reference/newman-cli/command-line-integration-with-newman/)
