@@ -1,0 +1,214 @@
+{
+  "info": {
+    "name": "Mine App - MongoDB CRUD",
+    "description": "Run in order against the existing Mine App after npm run seed. IDs are captured automatically. Created test items are deleted at the end.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "sampleItemId",
+      "value": ""
+    },
+    {
+      "key": "createdItemId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Get all items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/items"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Success, count and document array\", function () { const body = pm.response.json(); pm.expect(body.success).to.equal(true); pm.expect(body.count).to.equal(body.data.length); pm.expect(body.count).to.be.at.least(5); });",
+              "if (pm.response.code === 200 && pm.response.json().data.length) pm.collectionVariables.set(\"sampleItemId\", pm.response.json().data[0]._id);",
+              "pm.test(\"MongoDB IDs; no numeric id\", function () { pm.response.json().data.forEach(function (item) { pm.expect(item._id).to.match(/^[0-9a-f]{24}$/i); pm.expect(item).not.to.have.property(\"id\"); }); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 - Get one item",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/items/{{sampleItemId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Requested document returned\", function () { pm.expect(pm.response.json().data._id).to.equal(pm.collectionVariables.get(\"sampleItemId\")); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 - Create an item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/items",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"API Test Headphones\",\n  \"category\": \"Electronics\",\n  \"price\": 59.99\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\", function () { pm.response.to.have.status(201); });",
+              "if (pm.response.code === 201) pm.collectionVariables.set(\"createdItemId\", pm.response.json().data._id);",
+              "pm.test(\"MongoDB generated _id\", function () { const item = pm.response.json().data; pm.expect(item._id).to.match(/^[0-9a-f]{24}$/i); pm.expect(item.name).to.equal(\"API Test Headphones\"); pm.expect(item).not.to.have.property(\"id\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4 - Update the created item",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/items/{{createdItemId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 49.99\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Price updated; other fields and ID preserved\", function () { const item = pm.response.json().data; pm.expect(item._id).to.equal(pm.collectionVariables.get(\"createdItemId\")); pm.expect(item.price).to.equal(49.99); pm.expect(item.name).to.equal(\"API Test Headphones\"); pm.expect(item.category).to.equal(\"Electronics\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5 - Delete the created item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/items/{{createdItemId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 204\", function () { pm.response.to.have.status(204); });",
+              "pm.test(\"No response body\", function () { pm.expect(pm.response.text()).to.equal(\"\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6 - Invalid MongoDB ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/items/not-an-objectid"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", function () { pm.response.to.have.status(400); });",
+              "pm.test(\"Clear invalid ID error\", function () { const body = pm.response.json(); pm.expect(body.success).to.equal(false); pm.expect(body.message).to.include(\"Invalid MongoDB ID\"); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "7 - Item that no longer exists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/items/{{createdItemId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+              "pm.test(\"Missing document returns JSON error\", function () { pm.expect(pm.response.json().success).to.equal(false); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8 - Invalid route",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/does-not-exist"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 404\", function () { pm.response.to.have.status(404); });",
+              "pm.test(\"Route not found message\", function () { pm.expect(pm.response.json().message).to.include(\"Route not found\"); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
